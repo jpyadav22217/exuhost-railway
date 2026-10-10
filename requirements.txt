@@ -1,0 +1,10 @@
+@'
+pyTelegramBotAPI
+python-telegram-bot>=21.0
+psutil
+requests
+flask
+Pillow
+'@ | Out-File -FilePath requirements.txt -Encoding UTF8
+
+Get-Content requirements.txt
