@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.log
+.env
+*.session
+bot_token_friend.txt
+firebase_bot_*.sqlite3*
