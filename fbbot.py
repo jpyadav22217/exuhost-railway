@@ -4,6 +4,22 @@
 =============================================================
 """
 
+# import requests
+# TELEGRAM_SESSION = requests.Session()
+# import re
+# import urllib.parse
+# import time
+# import base64
+# import os
+# import tempfile
+# import zipfile
+# import json
+# import html
+# import threading
+# import sqlite3
+# from concurrent.futures import ThreadPoolExecutor, as_completed
+
+
 import requests
 TELEGRAM_SESSION = requests.Session()
 import re
@@ -18,6 +34,10 @@ import html
 import threading
 import sqlite3
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+# ── Directory setup ──────────────────────────────────────────
+BASE_DIR = os.environ.get("DATA_DIR", os.path.dirname(os.path.abspath(__file__)))
+os.makedirs(BASE_DIR, exist_ok=True)
 
 # ═══════════════════════════════════════════════════════════════
 # TELEGRAM BOT CONFIGURATION
@@ -59,8 +79,8 @@ FORCE_JOIN_CHANNELS = [
 # BATCH_DB_FILE = os.path.join(BASE_DIR, "firebase_bot_batches_friend.sqlite3")
 # WEB_LINKS_FILE = os.path.join(BASE_DIR, "firebase_bot_web_links_friend.json")
 
-BASE_DIR = os.environ.get("DATA_DIR", os.path.dirname(os.path.abspath(__file__)))
-os.makedirs(BASE_DIR, exist_ok=True)
+# BASE_DIR = os.environ.get("DATA_DIR", os.path.dirname(os.path.abspath(__file__)))
+# os.makedirs(BASE_DIR, exist_ok=True)
 USERS_FILE = os.path.join(BASE_DIR, "firebase_bot_users_friend.json")
 LINKS_FILE = os.path.join(BASE_DIR, "firebase_bot_links_friend.json")
 BATCH_DB_FILE = os.path.join(BASE_DIR, "firebase_bot_batches_friend.sqlite3")
