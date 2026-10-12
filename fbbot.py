@@ -47,7 +47,27 @@ DEFAULT_TG_TOKEN = os.environ.get("FB_BOT_TOKEN", "")
 # TOKEN_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bot_token_friend.txt")
 TOKEN_FILE = os.path.join(BASE_DIR, "bot_token_friend.txt")
 
+# def _load_bot_token():
+#     try:
+#         with open(TOKEN_FILE, "r", encoding="utf-8") as file:
+#             token = file.read().strip()
+#         if token:
+#             return token
+#     except Exception:
+#         pass
+#     try:
+#         with open(TOKEN_FILE, "w", encoding="utf-8") as file:
+#             file.write(DEFAULT_TG_TOKEN)
+#     except Exception:
+#         pass
+#     return DEFAULT_TG_TOKEN
+
 def _load_bot_token():
+    # Env var always wins — fresh value on every restart
+    env_token = os.environ.get("FB_BOT_TOKEN", "").strip()
+    if env_token:
+        return env_token
+    # Fall back to cached file (only if env var missing)
     try:
         with open(TOKEN_FILE, "r", encoding="utf-8") as file:
             token = file.read().strip()
@@ -55,12 +75,9 @@ def _load_bot_token():
             return token
     except Exception:
         pass
-    try:
-        with open(TOKEN_FILE, "w", encoding="utf-8") as file:
-            file.write(DEFAULT_TG_TOKEN)
-    except Exception:
-        pass
-    return DEFAULT_TG_TOKEN
+    # Nothing available — return empty (bot will fail fast with clear error)
+    print("[!] WARNING: No bot token found. Set FB_BOT_TOKEN env var!")
+    return ""
 
 TG_TOKEN = _load_bot_token()
 print(f"[*] Using bot token from {TOKEN_FILE}: {TG_TOKEN[:12]}...{TG_TOKEN[-6:]}")
